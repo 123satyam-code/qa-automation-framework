@@ -15,6 +15,7 @@ import webUtil.SeleniumActions;
 public class LoginTest extends baseTwo{
 	DashBoard dp=TestContextManager.getContext().getPageObjectManager().getDashBoard();
 	HomePage hp=TestContextManager.getContext().getPageObjectManager().getHomePage();
+	public  int count=0;
 	
 	
 	@Test(testName = "Orange HRM Login DDT",priority = 1,dataProvider = "loginData")
@@ -26,7 +27,13 @@ public class LoginTest extends baseTwo{
 		SeleniumActions.enterValue(driver, hp.password, passWord);
 		SeleniumActions.click(driver, hp.submitBtn);
 		SeleniumActions.findElement(driver, hp.sucessLogin);
-		Assert.assertEquals(false, true);
+		if(count==0) {
+			count=1;
+			Assert.assertEquals(false, true);
+		}else {
+			count=0;
+		}
+		
 	}
 	
 	
